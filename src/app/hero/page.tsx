@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,9 +64,11 @@ export default function Hero() {
                 Now admissions are open in Hyderabad
               </p>
               <div className="flex flex-col md:flex-row items-center md:space-x-10 space-y-5 md:space-y-0">
-                <button className="bg-sky-800 text-white font-extrabold px-8 py-3 rounded-md hover:bg-sky-700 transition-all">
-                  APPLY NOW
-                </button>
+              <Link href="/apply">
+  <a className="bg-sky-800 text-white font-extrabold px-8 py-3 rounded-md hover:bg-sky-700 transition-all">
+    APPLY NOW
+  </a>
+</Link>
                 <div>
                   <span className="sm:text-4xl text-2xl font-extrabold text-sky-800">
                     562,143
