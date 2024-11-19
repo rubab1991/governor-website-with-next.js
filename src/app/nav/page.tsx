@@ -1,41 +1,114 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const router = useRouter();
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = (href: string) => {
+        setIsMenuOpen(false);
+        router.push(href); // Navigate to the desired page
+    };
+
     return (
-        <nav className="bg-sky-900 p-7 relative flex items-center justify-between">
+        <nav className="w-full flex flex-col sm:flex-row bg-sky-900 p-5 relative sm:items-center sm:justify-between z-50">
             {/* Logo */}
-            <div className="absolute left-5 top-5">
+            <div
+                className={`absolute sm:static left-5 sm:left-0 top-5 sm:top-0 transition-opacity duration-300 ${
+                    isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+            >
                 <Image
                     src="/images/logo.png"
-                    width={80}
-                    height={80}
+                    width={70}
+                    height={70}
                     alt="Tuition Free Education Program Logo"
                 />
             </div>
 
-            {/* Navigation Bar */}
-            <ul className="flex justify-end items-center space-x-5 w-full text-white font-bold">
-                {/* Description */}
-                <li className="text-sky-200 text-xl px-5 md:px-32 w-full md:w-auto text-center">
+            {/* Description */}
+            <p className="text-sky-200 lg:text-xl px-5 md:px-32 sm:px-5 font-bold text-center sm:text-left">
+                <span className="block md:hidden">Tuition Free Program</span>
+                <span className="hidden md:block">
                     Tuition Free Education Program on Latest Technologies
-                </li>
+                </span>
+            </p>
 
+            {/* Toggle Button */}
+            <button
+                onClick={toggleMenu}
+                className="absolute right-5 top-5 sm:hidden flex flex-col items-center justify-center w-10 h-10"
+            >
+                <span
+                    className={`block w-8 h-1 bg-white transition-transform duration-300 ${
+                        isMenuOpen ? "rotate-45 translate-y-2" : ""
+                    }`}
+                ></span>
+                <span
+                    className={`block w-8 h-1 bg-white my-1 transition-opacity duration-300 ${
+                        isMenuOpen ? "opacity-0" : "opacity-100"
+                    }`}
+                ></span>
+                <span
+                    className={`block w-8 h-1 bg-white transition-transform duration-300 ${
+                        isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                    }`}
+                ></span>
+            </button>
+
+            {/* Navigation Bar */}
+            <ul
+                className={`sm:flex sm:flex-row sm:justify-end w-full sm:w-auto sm:items-center space-y-5 sm:space-y-0 sm:space-x-5 text-white bg-sky-900 sm:bg-transparent absolute sm:static top-16 left-0 right-0 p-5 sm:p-0 transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? "block" : "hidden"
+                }`}
+            >
                 {/* Navigation Links */}
                 <li>
-                    <Link href="/" className="hover:text-sky-300">Home</Link>
+                    <button
+                        onClick={() => closeMenu("/")}
+                        className="hover:text-sky-300 text-left w-full sm:w-auto"
+                    >
+                        Home
+                    </button>
                 </li>
                 <li>
-                    <Link href="/apply" className="hover:text-sky-300">Apply</Link>
+                    <button
+                        onClick={() => closeMenu("/apply")}
+                        className="hover:text-sky-300 text-left w-full sm:w-auto"
+                    >
+                        Apply
+                    </button>
                 </li>
                 <li>
-                    <Link href="/jobs" className="hover:text-sky-300">Jobs</Link>
+                    <button
+                        onClick={() => closeMenu("/jobs")}
+                        className="hover:text-sky-300 text-left w-full sm:w-auto"
+                    >
+                        Jobs
+                    </button>
                 </li>
                 <li>
-                    <Link href="/results" className="hover:text-sky-300">Result</Link>
+                    <button
+                        onClick={() => closeMenu("/results")}
+                        className="hover:text-sky-300 text-left w-full sm:w-auto"
+                    >
+                        Result
+                    </button>
                 </li>
                 <li>
-                    <Link href="/courses" className="hover:text-sky-300">Courses</Link>
+                    <button
+                        onClick={() => closeMenu("/courses")}
+                        className="hover:text-sky-300 text-left w-full sm:w-auto"
+                    >
+                        Courses
+                    </button>
                 </li>
             </ul>
         </nav>

@@ -6,7 +6,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Import the em
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 p-20 flex flex-row justify-between">
+    <footer className="bg-gray-100 p-20 flex-col md:flex md:flex-row md:justify-between">
       <div>
         <p className="text-xl text-gray-800 font-bold">Core Courses</p>
         <ul className="space-y-2">
@@ -92,7 +92,7 @@ export default function Footer() {
         {/* Social Media Icons */}
         <div>
           <p className="text-xl font-bold text-gray-800 hover:text-gray-950">Social Links</p>
-          <ul className="flex justify-center flex-row pt-2 space-x-4">
+          <ul className="flex md:justify-center flex-row pt-2 space-x-4">
             <li>
               <Link href="https://www.facebook.com/TeamKTessori/" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faFacebook} className="text-blue-600 hover:text-blue-900 w-8 h-8" />
